@@ -56,19 +56,19 @@ function handleFileSelect(event) {
 }
 
 function handleFileUpload(csvContent) {
-  if (document.getElementById("coordinatesRadio").checked) {
-    const coordinates = parseCoordinateCSV(csvContent);
-    processCoordinates(coordinates);
-  } else {
-    try {
+  try {
+    if (document.getElementById("coordinatesRadio").checked) {
+      const coordinates = parseCoordinateCSV(csvContent);
+      processCoordinates(coordinates);
+    } else {
       zipCodes = parseZipCodeCSV(csvContent);
       getCoordinatesForZipCodes(zipCodes).then((coordinates) => {
         processCoordinates(coordinates);
       });
-    } catch (error) {
-      alert(`Error: ${error.message}`);
-      return;
     }
+  } catch (error) {
+    alert(`Error: ${error.message}`);
+    return;
   }
 }
 
@@ -76,6 +76,10 @@ function parseCoordinateCSV(csvContent) {
   const lines = csvContent.split("\n");
   const header = lines[0].split(",");
   const coordinates = [];
+
+  if (header.length != 2) {
+    throw Error(`The CSV header should include the latitude and longitude, respectively.`)
+  }
 
   for (let i = 1; i < lines.length; i++) {
     const data = lines[i].split(",");
@@ -95,7 +99,7 @@ function parseCoordinateCSV(csvContent) {
 
       coordinates.push(coordinate);
     } else {
-      throw Error(`The CSV has missing data on line ${i}`)
+      throw Error(`The CSV has missing data on line ${i}.`)
     }
   }
 
@@ -104,13 +108,12 @@ function parseCoordinateCSV(csvContent) {
 
 function parseZipCodeCSV(csvContent) {
   const lines = csvContent.split("\n");
-  const header = lines[0].split(",");
   const zipCodes = [];
 
   for (let i = 1; i < lines.length; i++) {
     const data = lines[i].split(",");
 
-    if (data.length === header.length) {
+    if (data.length >= 1) {
       if (data[0].trim().length == 0) {
         // Skip empty entries
         continue;
@@ -121,6 +124,8 @@ function parseZipCodeCSV(csvContent) {
       }
 
       zipCodes.push(data[0]);
+    } else {
+      throw Error("CSV file contains an empty entry.");
     }
   }
 
@@ -157,7 +162,7 @@ async function retrieveCoordinateFromZipCode(zipCode) {
         zipCode: zipCode,
       };
     } else {
-      throw new Error("Invalid response from Google Geolocation API");
+      throw new Error("Invalid response from Google Geolocation API.");
     }
   } catch (error) {
     const errorMessage = `Error: ${error.message}`;

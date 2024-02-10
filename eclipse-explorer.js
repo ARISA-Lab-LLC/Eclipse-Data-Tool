@@ -820,6 +820,10 @@ function getcoverage() {
     }
   }
 
+  if (typeof c === 'undefined') {
+    return a * 100.0;
+  }
+
   return c * 100.0;
 }
 
