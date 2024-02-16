@@ -83,15 +83,15 @@ function getC1Time(elements) {
 }
 
 function getC2Time(elements) {
-    return gettime(elements, c2);
+  return gettime(elements, c2);
 }
 
 function getC3Time(elements) {
-    return gettime(elements, c3);
+  return gettime(elements, c3);
 }
 
 function getC4Time(elements) {
-    return gettime(elements, c4);
+  return gettime(elements, c4);
 }
 
 function getMidTime(elements) {
@@ -241,7 +241,7 @@ function c1c4iterate(elements, circumstances) {
     tmp =
       (circumstances[24] * circumstances[26] +
         circumstances[25] * circumstances[27]) /
-        circumstances[30] -
+      circumstances[30] -
       tmp;
     circumstances[1] = circumstances[1] - tmp;
     timelocdependent(elements, circumstances);
@@ -296,7 +296,7 @@ function c2c3iterate(elements, circumstances) {
     tmp =
       (circumstances[24] * circumstances[26] +
         circumstances[25] * circumstances[27]) /
-        circumstances[30] -
+      circumstances[30] -
       tmp;
     circumstances[1] = circumstances[1] - tmp;
     timelocdependent(elements, circumstances);
@@ -420,8 +420,8 @@ function getsunriset(elements, circumstances, riset) {
     if (iter == 4) return;
     h0 = Math.acos(
       (Math.sin(-0.00524) - Math.sin(obsvconst[0]) * circumstances[5]) /
-        Math.cos(obsvconst[0]) /
-        circumstances[6]
+      Math.cos(obsvconst[0]) /
+      circumstances[6]
     );
     diff = (riset * h0 - circumstances[16]) / circumstances[13];
     while (diff >= 12.0) diff -= 24.0;
@@ -640,11 +640,8 @@ function gettime(elements, circumstances) {
 
   ans = "";
   index = obsvconst[6];
-  t =
-    circumstances[1] +
-    elements[1 + index] -
-    obsvconst[3] -
-    (elements[4 + index] - 0.5) / 3600.0;
+  t = circumstances[1] + elements[1 + index] - obsvconst[3] - (elements[4 + index] - 0.5) / 3600.0
+
   if (t < 0.0) {
     t = t + 24.0;
   }
@@ -810,7 +807,7 @@ function getcoverage() {
     } else {
       c = Math.acos(
         (mid[28] * mid[28] + mid[29] * mid[29] - 2.0 * mid[36] * mid[36]) /
-          (mid[28] * mid[28] - mid[29] * mid[29])
+        (mid[28] * mid[28] - mid[29] * mid[29])
       );
       b = Math.acos(
         (mid[28] * mid[29] + mid[36] * mid[36]) / mid[36] / (mid[28] + mid[29])

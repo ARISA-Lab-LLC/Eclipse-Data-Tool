@@ -1,33 +1,25 @@
 document
   .getElementById("csvFileInput")
-  .addEventListener("change", handleFileSelect);
+  .addEventListener("change", handleFileSelect, false);
 
 // Besselian Elements for Solar Eclipses
 const eclipse_elements = {
+  "08-21-2017": [
+    2457987.268521, 18.0, -4.0, 4.0, 70.3, 70.3,
+    -0.1295710, 0.5406426, -2.940e-05, -8.100e-06,
+    0.4854160, -0.1416400, -9.050e-05, 2.050e-06,
+    11.8669596, -0.0136220, -2.000e-06,
+    89.2454300, 15.0039368, 0.000e-00,
+    0.5420930, 0.0001241, -1.180e-05,
+    -0.0040250, 0.0001234, -1.170e-05,
+    0.0046222, 0.0045992,
+  ],
   "04-08-2024": [
     2460409.26284, 18.0, -4.0, 4.0, 74.0, 74.0, -0.318244, 0.5117116, 3.26e-5,
     -8.42e-6, 0.219764, 0.2709589, -5.95e-5, -4.66e-6, 7.5862002, 0.014844,
     -2.0e-6, 89.591217, 15.0040817, 0.0, 0.535814, 0.0000618, -1.28e-5,
     -0.010272, 0.0000615, -1.27e-5, 0.0046683, 0.004645,
-  ],
-  "10-02-2024": [
-    2460586.282098, 19.0, -4.0, 4.0, 74.3, 74.3, -0.068048, 0.441617, 1.36e-5,
-    -4.83e-6, -0.36317, -0.243563, 3.39e-5, 2.84e-6, -3.9872501, -0.015511,
-    1.0e-6, 107.7310867, 15.0043297, 0.0, 0.570349, -0.0000002, -9.8e-6,
-    0.024091, -0.0000002, -9.7e-6, 0.0046734, 0.0046501,
-  ],
-  "03-29-2025": [
-    2460763.950417, 11.0, -4.0, 4.0, 74.5, 74.5, -0.40287, 0.5094122, 4.15e-5,
-    -8.45e-6, 0.965695, 0.2788348, -7.23e-5, -4.84e-6, 3.56602, 0.015539,
-    -1.0e-6, 343.831665, 15.004365, 0.0, 0.535766, -0.0000533, -1.29e-5,
-    -0.01032, -0.000053, -1.28e-5, 0.0046823, 0.004659,
-  ],
-  "09-21-2025": [
-    2460940.321576, 20.0, -4.0, 4.0, 74.8, 74.8, -0.390072, 0.4531592, 3.2e-6,
-    -5.38e-6, -1.001834, -0.2521633, 4.56e-5, 3.15e-6, 0.36472, -0.0156, 0.0,
-    121.7819214, 15.0047712, 0.0, 0.562492, 0.0000909, -1.03e-5, 0.016273,
-    0.0000905, -1.02e-5, 0.0046583, 0.0046351,
-  ],
+  ]
 };
 
 eclipse_date_select = document.getElementById("eclipseDateSelect");
@@ -78,7 +70,7 @@ function parseCoordinateCSV(csvContent) {
   const coordinates = [];
 
   if (header.length != 2) {
-    throw Error(`The CSV header should include the latitude and longitude, respectively.`)
+    throw Error(`Expected CSV header to only have two headers (Latitude, Longitude) but found ${header.length}.`)
   }
 
   for (let i = 1; i < lines.length; i++) {
@@ -108,6 +100,12 @@ function parseCoordinateCSV(csvContent) {
 
 function parseZipCodeCSV(csvContent) {
   const lines = csvContent.split("\n");
+  const header = lines[0].split(",");
+
+  if (header.length != 1) {
+    throw Error(`Expected CSV to only have a single header (ZipCode) but found ${header.length}.`)
+  }
+
   const zipCodes = [];
 
   for (let i = 1; i < lines.length; i++) {
