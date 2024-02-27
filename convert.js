@@ -260,7 +260,7 @@ function createProcessedCSV(data) {
 }
 
 function validateTime(val) {
-  if (isNaN(val)) {
+  if (val.indexOf('NaN') > -1) {
     return 0;
   }
 
