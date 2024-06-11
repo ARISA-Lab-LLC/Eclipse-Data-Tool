@@ -19,7 +19,7 @@ The eclipse data that is returned includes the following:
 How To Use
 1. Download or clone the repository locally from: https://github.com/ARISA-Lab-LLC/Eclipse-Data-Tool.
 2. If downloaded directly from GitHub, unzip the folder to the desired location on your system
-3. Open the convert.js file using a text editor and replace the API_KEY placeholder in the retrieveCoordinateFromZipCode function with an actual Google Geocoding API key (line 145). Without this change the option to get eclipse data from zip codes will always raise an error
+3. Open the convert.js file using a text editor and replace the API_KEY placeholder in the retrieveCoordinateFromZipCode function with an actual Google Geocoding API key (line 147). Without this change the option to get eclipse data from zip codes will always raise an error
 4. Open the index.html file in the Eclipse-Data-Tool folder with your favorite browser
 5. Select an eclipse date
 6. Select the type of location data that will be provided in the uploaded CSV (Coordinates or Zip Codes)
@@ -29,4 +29,4 @@ How To Use
 Things to note:
 * Steps 1-3 only need to be done once when the project is copied locally. 
 * If the uploaded CSV file does not contain the expected location data in its proper format, an error alert will be presented to the user indicating the issue.
-* You will need to add your own Google Geocoding API key to line 145 and replace the API_KEY placeholder.
+* You will need to add your own Google Geocoding API key to line 147 in convert.js and replace the API_KEY placeholder to uze thte ZIP Code Function.
