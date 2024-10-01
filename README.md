@@ -8,8 +8,8 @@ The eclipse data that is returned includes the following:
 * Eclipse coverage  [Output](as a percentage)
 * First contact date  [Output](The day of the eclipse.)
 * First contact time (UTC)  [Output](The time the Moon first appears on the disk of the sun..)
-* Second contact time (UTC)   [Output](Totality start time, if a total eclipse.  Annularity start time if an annular eclipse.  If partial its 0.)
-* Third contact time (UTC)  [Output](Totality end time, if a total eclipse.  Annularity end time if an annular eclipse.  If partial its 0.)
+* Second contact time (UTC)   [Output](Totality start time, if a total eclipse.  Annularity start time if an annular eclipse.  If partial it is 0.)
+* Third contact time (UTC)  [Output](Totality end time, if a total eclipse.  Annularity end time if an annular eclipse.  If partial it is 0.)
 * Fourth contact time (UTC)  [Output] (Time that the Moon as moved completely off the the disk of the Sun.)
 * Maximum eclipse time (UTC)  [Output] (Time where the local eclipse hits its peak.)
 * Latitude [Input] (Observation latitude which provides timings above.)
@@ -28,5 +28,6 @@ How To Use
 
 Things to note:
 * Steps 1-3 only need to be done once when the project is copied locally. 
+* Make sure that you can run java scripts on the computer where this is running.   
 * If the uploaded CSV file does not contain the expected location data in its proper format, an error alert will be presented to the user indicating the issue.
 * You will need to add your own Google Geocoding API key to line 147 in convert.js and replace the API_KEY placeholder to use the ZIP Code Function.
