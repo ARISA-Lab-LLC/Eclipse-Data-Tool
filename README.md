@@ -31,3 +31,8 @@ Things to note:
 * Make sure that you can run java scripts on the computer where this is running.   
 * If the uploaded CSV file does not contain the expected location data in its proper format, an error alert will be presented to the user indicating the issue.
 * You will need to add your own Google Geocoding API key to line 147 in convert.js and replace the API_KEY placeholder to use the ZIP Code Function.
+
+#Copyrights, Acknowledgements, and Atrributions
+* Eclipse Data Credit: Eclipse map/figure/table/predictions courtesy of Fred Espenak, NASA/Goddard Space Flight Center, from eclipse.gsfc.nasa.gov.
+
+* Eclipse Soundscapes is an enterprise of ARISA Lab, LLC and is supported by NASA award No. 80NSSC21M0008. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Aeronautics and Space Administration.
